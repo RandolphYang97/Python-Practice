@@ -1,0 +1,30 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+
+q = 1 #电荷量
+e0 = 4*3.14*8.85 #4×pi×ε0 
+
+x,y= np.mgrid[-1:1:100j,-1:1:100j]# 网格 
+
+
+r=np.sqrt(x**2+y**2)#与电荷(原点)距离
+
+E_scale = q/(e0*(r**2))  #电场大小
+
+E_XOY= E_scale*(np.sqrt((x**2+y**2)/r)) #XOY平面处的电场大小
+
+Ex = E_XOY*(x/np.sqrt(x**2+y**2))#电场在X分量大小
+
+Ey = E_XOY*(y/np.sqrt(x**2+y**2))
+
+#Ez=E_scale*(z/r)
+
+u= Ex
+v= Ey
+#w= Ez
+
+plt.streamplot(y,x,v,u,linewidth=0.1, density=10)
+plt.show()
+
